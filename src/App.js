@@ -11,7 +11,7 @@ import Product from './components/Product';
 function App() {
 
   // STATE ANLAYISHINI
-  const [money,setMoney] = useState(15000)
+  const [money,setMoney] = useState(1500)
   const [basket, setBasket] = useState([])
   const [total,setTotal] = useState(0)
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
 
- <Navbar />
+ <Navbar total={total} money={money} />
     <div className='mehsullar'>
     {
       products.map(p =>(

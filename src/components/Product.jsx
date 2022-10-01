@@ -1,6 +1,36 @@
 import React from 'react'
 // Obyektin parcalanmasi
 const Product = ({product, basket,total,setBasket}) => {
+
+const basketItem = basket.find(item=> item.id === product.id)
+
+
+const addBasket = _ => {
+  const checkBasket = basketItem
+
+  if(checkBasket) {
+    checkBasket.amount += 1
+
+    // spread operator
+    // const arr1 = ["Aygun", "Ayshen", "Mehdi"]
+
+    // const arr2 = [...arr1, "Rauf"]
+
+    setBasket([...basket.filter(item=>item.id !==product.id ), checkBasket ])
+  }
+
+  else {
+    setBasket([...basket, 
+      {
+      id:product.id,
+      amount:1
+    }])
+  }
+}
+
+
+
+
   return (
     <div className="product">
     <img src={product.image} alt="" />

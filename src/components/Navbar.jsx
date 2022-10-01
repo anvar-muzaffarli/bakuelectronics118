@@ -1,15 +1,29 @@
 import React , {useRef} from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
+import {ImCross} from 'react-icons/im'
 
-const Navbar = () => {
 
+import Balans from './Balans'
+const Navbar = ({total,money}) => {
 
-    const searchIconRef = useRef()
+  
+
+  const closeBtnRef = useRef()
+  const searchIconRef = useRef()
     // acilacaq pencere overlayRef
-    const overlayRef = useRef()
+  const overlayRef = useRef()
 
 
-    const openOverlay = (e) => {
+    const closeOverlay = e => {
+      const kliklenenElement = e.target
+      // alert("Calisir")
+
+      if(kliklenenElement.classList.contains('cross-icon')) {
+        overlayRef.current.classList.remove('active')
+      }
+    }
+
+    const openOverlay = e => {
         const kliklenenElement = e.target
 
         if(kliklenenElement.classList.contains('s-icon')) {
@@ -23,8 +37,11 @@ const Navbar = () => {
   return (
     <>
     <div className="overlay" ref={overlayRef} >
+        <ImCross className='cross-icon' onClick={closeOverlay} ref={closeBtnRef}/>
         <input className='overlay-search-input' type="search" placeholder='Search in IT Brains Search' />
     </div>
+
+    
     <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><img src="	https://www.bakuelectronics.az/assets/img/logo.svg" alt="" /></a>
@@ -41,7 +58,7 @@ const Navbar = () => {
         <div class="navbar-nav mx-auto">
           <a class="nav-link active text-danger" aria-current="page" href="/kampaniyalar">Kampaniyalar</a>
           <a class="nav-link" href="/magazalar">Mağazalar</a>
-          <a class="nav-link" href="#"></a>
+          <a class="nav-link" href="#"><Balans total={total} money={money}/></a>
           <a class="nav-link" href="#">143 </a>
         </div>
       </div>
